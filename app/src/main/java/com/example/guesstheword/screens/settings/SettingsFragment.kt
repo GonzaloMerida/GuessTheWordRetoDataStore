@@ -65,7 +65,7 @@ class SettingsFragment : Fragment() {
 
     private fun setListeners() {
         binding.btnBackSettings.setOnClickListener {
-            goBack()
+            findNavController().popBackStack()
         }
         binding.btnSaveSettings.setOnClickListener {
             validateName(binding.etUserName.text.toString())
@@ -85,13 +85,5 @@ class SettingsFragment : Fragment() {
             binding.rbMedium.isChecked -> UserPreferences.MEDIUM
             else -> UserPreferences.HIGH
         }
-    }
-
-    private fun goBack(){
-        val action = SettingsFragmentDirections.actionSettingsFragmentToTitleFragment(
-            setLevelInt(),
-            settingsVM.uiState.value.name
-        )
-        findNavController().popBackStack()
     }
 }

@@ -19,12 +19,6 @@
         <action
             android:id="@+id/action_titleFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
-        <argument
-            android:name="difficultySelected"
-            app:argType="integer" />
-        <argument
-            android:name="userNameLoaded"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"
@@ -55,12 +49,6 @@
             android:id="@+id/action_gameFragment_to_scoreFragment"
             app:destination="@id/scoreFragment"
             app:popUpTo="@id/titleFragment" />
-        <argument
-            android:name="difficultySelected"
-            app:argType="integer" />
-        <argument
-            android:name="userNameLoaded"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/insertWordFragment"

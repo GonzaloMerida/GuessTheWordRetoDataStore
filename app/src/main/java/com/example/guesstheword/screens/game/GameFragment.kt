@@ -45,6 +45,7 @@ import com.example.guesstheword.dependencies.MyApplication
 import com.example.guesstheword.screens.settings.SettingsVM
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -55,9 +56,9 @@ class GameFragment : Fragment() {
 
     private lateinit var binding: GameFragmentBinding
 
-    private val args : GameFragmentArgs by navArgs()
-
     private val gameVM : GameVM by viewModels { GameVM.Factory }
+
+    private val settingsVM : SettingsVM  by viewModels { SettingsVM.Factory }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -92,8 +93,6 @@ class GameFragment : Fragment() {
                 gameVM.uiState.collect { gameState ->
                     binding.scoreText.text = gameState.score.toString()
                     binding.wordText.text = gameState.word?.title ?: getString(R.string.no_more_words)
-                    binding.tvDifficultyLevel.text = gameState.difficulty.toString()
-                    binding.tvUserNameLoaded.text = gameState.userName
                     if(gameState.noMoreWords) {
                         binding.correctButton.isEnabled = false
                         binding.skipButton.isEnabled = false
@@ -104,6 +103,10 @@ class GameFragment : Fragment() {
                         Snackbar.make(requireView(),gameState.message,Snackbar.LENGTH_SHORT).show()
                         gameVM.messageShown()
                     }
+                }
+                settingsVM.uiState.collect{ gameState ->
+                    binding.tvDifficultyLevel.text = gameState.level.toString()
+                    binding.tvUserNameLoaded.text = gameState.name
                 }
             }
         }

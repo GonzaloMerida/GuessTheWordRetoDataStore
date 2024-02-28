@@ -34,18 +34,13 @@ class TitleFragment : Fragment() {
 
     private lateinit var binding : TitleFragmentBinding
 
-    private val args : TitleFragmentArgs by navArgs()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         binding = TitleFragmentBinding.inflate(inflater,container,false)
 
         binding.playGameButton.setOnClickListener {
-            findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment(
-                args.difficultySelected,
-                args.userNameLoaded
-            ))
+            findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment())
         }
 
         binding.bntInsertWord.setOnClickListener {
