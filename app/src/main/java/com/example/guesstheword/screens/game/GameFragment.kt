@@ -104,6 +104,11 @@ class GameFragment : Fragment() {
                         gameVM.messageShown()
                     }
                 }
+
+            }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
                 settingsVM.uiState.collect{ gameState ->
                     binding.tvDifficultyLevel.text = gameState.level.toString()
                     binding.tvUserNameLoaded.text = gameState.name
