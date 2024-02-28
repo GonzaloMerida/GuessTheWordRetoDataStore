@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/titleFragment">
+
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="com.example.guesstheword.screens.title.TitleFragment"
+        android:label="TitleFragment"
+        tools:layout="@layout/title_fragment">
+        <action
+            android:id="@+id/action_titleFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_insertWordFragment"
+            app:destination="@id/insertWordFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <argument
+            android:name="difficultySelected"
+            app:argType="integer" />
+        <argument
+            android:name="userNameLoaded"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.example.guesstheword.screens.score.ScoreFragment"
+        android:label="ScoreFragment"
+        tools:layout="@layout/score_fragment">
+        <argument
+            android:name="score"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_scoreFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@id/titleFragment" />
+        <argument
+            android:name="rightWords"
+            app:argType="string[]" />
+        <argument
+            android:name="wrongWords"
+            app:argType="string[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.guesstheword.screens.game.GameFragment"
+        android:label="GameFragment"
+        tools:layout="@layout/game_fragment">
+        <action
+            android:id="@+id/action_gameFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment"
+            app:popUpTo="@id/titleFragment" />
+        <argument
+            android:name="difficultySelected"
+            app:argType="integer" />
+        <argument
+            android:name="userNameLoaded"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/insertWordFragment"
+        android:name="com.example.guesstheword.screens.word.InsertWordFragment"
+        android:label="fragment_insert_word"
+        tools:layout="@layout/fragment_insert_word" >
+        <action
+            android:id="@+id/action_insertWordFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.guesstheword.screens.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
+    </fragment>
+</navigation>

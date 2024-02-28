@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2019 Google Inc.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.score.ScoreFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="#377C57BD"
+        app:cardCornerRadius="6dp"
+        app:contentPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                app:layout_constraintBaseline_toBaselineOf="@+id/etName"
+                app:layout_constraintEnd_toStartOf="@+id/etName"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/you_scored_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/you_scored"
+                android:textColor="@color/black_text_color"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etName" />
+
+            <TextView
+                android:id="@+id/score_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/black_text_color"
+                android:textSize="34sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/you_scored_text"
+                app:layout_constraintStart_toStartOf="@+id/you_scored_text"
+                app:layout_constraintTop_toBottomOf="@+id/you_scored_text"
+                tools:text="40" />
+
+            <TextView
+                android:id="@+id/tvRightWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/right_words"
+                app:layout_constraintEnd_toStartOf="@+id/tvWrongWords"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/score_text" />
+
+            <TextView
+                android:id="@+id/tvWrongWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wrong_words"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvRightWords"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvRightWords" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toStartOf="@+id/btnSave"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvName"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                app:layout_constraintBottom_toBottomOf="@+id/etName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/etName"
+                app:layout_constraintTop_toTopOf="@+id/etName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/play_again_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/play_again"
+        android:theme="@style/GoButton"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHistory"
+        style="@style/highlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/history_games"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvGame" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        style="@style/highlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/date"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvNames"
+        app:layout_constraintEnd_toStartOf="@+id/tvNames"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNames"
+        style="@style/highlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/name_no_points"
+        app:layout_constraintEnd_toStartOf="@+id/tvScore"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvDate"
+        app:layout_constraintTop_toBottomOf="@+id/tvHistory" />
+
+    <TextView
+        android:id="@+id/tvScore"
+        style="@style/highlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/score"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvNames"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvNames" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGameList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/play_again_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNames" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
