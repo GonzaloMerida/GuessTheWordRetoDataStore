@@ -44,7 +44,8 @@ class GameVM(
                 else -> 8
             }
 
-            val words = wordsRepository.getSomeRandomWords(NUM_WORDS)
+            val words = wordsRepository.getSomeRandomWords(num_words)
+            _num_words = words.size
             _uiState.update { currentSate ->
                 currentSate.copy(
                     word = if(words.isEmpty()) null else words[0],
