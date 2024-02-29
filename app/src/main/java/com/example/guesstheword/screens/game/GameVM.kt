@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.example.guesstheword.datamodel.UserPreferences
 import com.example.guesstheword.dependencies.MyApplication
 import com.example.guesstheword.repositories.UserPreferencesRepository
 import com.example.guesstheword.repositories.WordsRepository
@@ -15,16 +16,34 @@ import kotlinx.coroutines.flow.*
 import kotlin.math.floor
 
 class GameVM(
-    val wordsRepository: WordsRepository
+    val wordsRepository: WordsRepository,
+    val settingsRepository: UserPreferencesRepository
     ) : ViewModel() {
 
     //Flujo de estado.
     private val _uiState : MutableStateFlow<GameUiState> = MutableStateFlow(GameUiState())
     val uiState : StateFlow<GameUiState> = _uiState.asStateFlow()
 
+    private var userName : String = ""
+    private var dif : Int = 1
+
+    private var _num_words = 10
+        get() = _num_words
+
     init {
         //inicializa las palabras.
         viewModelScope.launch(Dispatchers.IO) {
+            settingsRepository.getUserPrefs().collect(){userPreferences ->
+                userName = userPreferences.name
+                dif = userPreferences.level
+            }
+
+            _num_words = when(dif){
+                UserPreferences.LOW -> 4
+                UserPreferences.MEDIUM -> 6
+                else -> 8
+            }
+
             val words = wordsRepository.getSomeRandomWords(NUM_WORDS)
             _uiState.update { currentSate ->
                 currentSate.copy(
@@ -32,7 +51,9 @@ class GameVM(
                     score = 0,
                     wordList = if (words.size > 1) words.subList(1,words.size) else emptyList(),
                     noMoreWords = words.isEmpty(),
-                    message = if(words.isEmpty()) "No hay palabras." else null
+                    message = if(words.isEmpty()) "No hay palabras." else null,
+                    userName = userName,
+                    difficulty = dif
                 )
             }
         }

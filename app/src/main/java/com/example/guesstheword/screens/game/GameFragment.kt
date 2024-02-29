@@ -60,6 +60,8 @@ class GameFragment : Fragment() {
 
     private val settingsVM : SettingsVM  by viewModels { SettingsVM.Factory }
 
+    private val numCurrentWord : Int = 0
+    private var numMaxWordsPerDifficulty : Int = 0
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
@@ -112,6 +114,7 @@ class GameFragment : Fragment() {
                 settingsVM.uiState.collect{ gameState ->
                     binding.tvDifficultyLevel.text = gameState.level.toString()
                     binding.tvUserNameLoaded.text = gameState.name
+
                 }
             }
         }

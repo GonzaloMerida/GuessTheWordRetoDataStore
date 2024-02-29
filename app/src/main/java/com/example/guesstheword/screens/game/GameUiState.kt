@@ -12,5 +12,6 @@ data class GameUiState(
     val message : String? = null,
     val difficulty : Int = 0,
     val userName : String? = null,
-    val noMoreWords : Boolean = false
+    val noMoreWords : Boolean = false,
+    val counter : Int = 0
 )
